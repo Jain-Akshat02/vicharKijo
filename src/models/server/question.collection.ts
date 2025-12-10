@@ -1,16 +1,18 @@
-import {databases,tablesDB} from "./config";
-import { Permission,TablesDB } from "node-appwrite";
-import {db,questionCollection} from "../name";
+import {tablesDB} from "./config";
+import { Permission,Role } from "node-appwrite";
+import {db,questionTable} from "../name";
 
 
 export default async function createQuestionTable(){
-    await tablesDB.createStringColumn({
+    await tablesDB.createTable({
       databaseId: db,
-      tableId: questionCollection,
-      key: "description",
-      size: 1000,
-      required: false,
-      array: false,
+      name: "questions",
+      tableId: questionTable,
+      permissions: [
+        Permission.create(Role.users()),
+        Permission.read(Role.any()),
+      ]
+      
     })
 
 
