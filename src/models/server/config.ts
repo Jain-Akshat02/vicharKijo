@@ -8,8 +8,9 @@ client
     .setProject(env.appwrite.projectId) // Your project ID
     .setKey(env.appwrite.apiKey) // Your secret API key
 
+const databases = new Databases(client);
 const avatars = new Avatars(client);
 const storage = new Storage(client);
 const users = new Users(client);
 const tablesDB = new TablesDB(client);
-export { client,avatars,storage,users,tablesDB }
+export { client,databases,avatars,storage,users,tablesDB }

@@ -4,16 +4,19 @@ import {db,questionTable} from "../name";
 
 
 export default async function createQuestionTable(){
-    await tablesDB.createTable({
-      databaseId: db,
-      name: "questions",
-      tableId: questionTable,
-      permissions: [
-        Permission.create(Role.users()),
-        Permission.read(Role.any()),
-      ]
-      
-    })
-
-
+    try {
+        await tablesDB.createTable({
+            databaseId: db,
+            name: "questions",
+            tableId: questionTable,
+            permissions: [
+                Permission.create(Role.users()),
+                Permission.read(Role.any()),
+            ]
+        })
+        console.log("✅ Question table created successfully!");
+    } catch(error) {
+        console.error("❌ Error creating question table:", error);
+        throw error;
+    }
 }
