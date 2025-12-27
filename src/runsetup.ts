@@ -1,4 +1,4 @@
-import createDatabase from "./models/server/database.setup";
+import createDatabase from "./models/server/dbSetup";
 import createQuestionTable from "./models/server/question.collection";
 import createAnswerTable from "./models/server/answer.collection";
 import createCommentTable from "./models/server/comment.collection";
