@@ -1,30 +1,18 @@
-import {databases} from "./config";
-import createAnswerTable from "./answer.collection";
-import createQuestionTable from "./question.collection";
-import createCommentTable from "./comment.collection";
-import {db} from "../name";
+import { db } from "../name";
+import { tablesDB } from "./config";
 
 export default async function createDatabase() {
+  try {
+    await tablesDB.get({ databaseId: db });
+    console.log("✅ Database connected");
+  } catch (error) {
     try {
-        // Try to get the database to check if it exists
-        await databases.get(db);
-        console.log("db connected");
-    } catch (error: any) {
-       try {
-        await databases.create(db,db);
-        console.log("db created");
-        await Promise.all([
-            createQuestionTable(),
-            createAnswerTable(),
-            createCommentTable()
-        ])
-        console.log("table created");
-        
-       } catch (error) {
-        console.log("---error---",);
-        
-       }
+      await tablesDB.create({ databaseId: db, name: db });
+      console.log("✅ Database created");
+    } catch (createError) {
+      console.error("❌ Error creating database:", createError);
+      throw createError;
     }
-    return databases
+  }
+  return tablesDB;
 }
-
