@@ -21,4 +21,6 @@ export default async function createAnswerTable(){
         console.error("❌ Error creating answer table:", error);
         throw error;
     }
+
+    
 }
