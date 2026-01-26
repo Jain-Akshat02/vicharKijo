@@ -1,8 +1,8 @@
 const env = {
     appwrite: {
-        endpoint: String(process.env.NEXT_PUBLIC_APPWRITE_HOST_URL),
-        projectId: String(process.env.NEXT_PUBLIC_PROJECT_ID),
-        apiKey: String(process.env.APPWRITE_API_KEY),
+        endpoint: process.env.NEXT_PUBLIC_APPWRITE_HOST_URL || '',
+        projectId: process.env.NEXT_PUBLIC_PROJECT_ID || '',
+        apiKey: process.env.APPWRITE_API_KEY || '',
     }
 }
 
