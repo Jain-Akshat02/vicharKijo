@@ -3,3 +3,4 @@ export const questionTable = "questions";
 export const answerTable = "answers";
 export const commentTable = "comments";
 export const questionAttachmentBucket = "question-attachment";
+export const voteTable = "votes";

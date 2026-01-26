@@ -1,4 +1,4 @@
-import {databases} from "./config";
+import {tablesDB} from "./config";
 import createAnswerTable from "./answer.collection";
 import createQuestionTable from "./question.collection";
 import createCommentTable from "./comment.collection";
@@ -6,12 +6,16 @@ import {db} from "../name";
 
 export default async function createDatabase() {
     try {
-        // Try to get the database to check if it exists
-        await databases.get(db);
+        // Try to list tables to check if database exists
+        await tablesDB.listTables(db);
         console.log("db connected");
     } catch (error: any) {
        try {
-        await databases.create(db,db);
+        // Create database using create method
+        await tablesDB.create({
+            databaseId: db,
+            name: db
+        });
         console.log("db created");
         await Promise.all([
             createQuestionTable(),
@@ -25,6 +29,6 @@ export default async function createDatabase() {
         
        }
     }
-    return databases
+    return tablesDB
 }
 
