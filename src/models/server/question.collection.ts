@@ -53,20 +53,20 @@ export default async function createQuestionTable() {
 
 
   //create index
-  await tablesDB.createIndex({
-    databaseId: db,
-    tableId: questionTable,
-    key: "title", // Replace with your field names
-    type: IndexType.Fulltext,
-    columns: ["title"],
-    orders: ["asc", "desc"],
-  });
-  await tablesDB.createIndex({
-    databaseId: db,
-    tableId: questionTable,
-    key: "content", // Replace with your field names
-    type: IndexType.Fulltext,
-    columns: ["content"], 
-    orders: ["asc", "desc"],
-  });
+  // await tablesDB.createIndex({
+  //   databaseId: db,
+  //   tableId: questionTable,
+  //   key: "title", // Replace with your field names
+  //   type: IndexType.Fulltext,
+  //   columns: ["title"],
+  //   orders: ["ASC"],
+  // });
+  // await tablesDB.createIndex({
+  //   databaseId: db,
+  //   tableId: questionTable,
+  //   key: "content", // Replace with your field names
+  //   type: IndexType.Fulltext,
+  //   columns: ["content"], 
+  //   orders: ["ASC"],
+  // });
 }

@@ -70,18 +70,18 @@ export default async function createAnswerTable() {
   console.log("✅ Columns created for answers table");
 //create indices
 
-  await tablesDB.createIndex({
-    databaseId: db,
-    tableId: answerTable,
-    key: "authorId",
-    type: IndexType.Key,
-    columns: ["authorId"],
-  });
-  await tablesDB.createIndex({
-    databaseId: db,
-    tableId: answerTable,
-    key: "questionId",
-    type: IndexType.Key,
-    columns: ["questionId"],
-  });
+  // await tablesDB.createIndex({
+  //   databaseId: db,
+  //   tableId: answerTable,
+  //   key: "authorId",
+  //   type: IndexType.Key,
+  //   columns: ["authorId"],
+  // });
+  // await tablesDB.createIndex({
+  //   databaseId: db,
+  //   tableId: answerTable,
+  //   key: "questionId",
+  //   type: IndexType.Key,
+  //   columns: ["questionId"],
+  // });
 }
