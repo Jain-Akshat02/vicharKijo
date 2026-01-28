@@ -9,7 +9,7 @@ const client = new Client()
 const storage = new Storage(client);
 
 export async function createStorageBucket() {
-  await storage.createBucket({
+  if(!await storage.getBucket("attachments")){await storage.createBucket({
   bucketId: "attachments",
   name: "Attachments",
   permissions: [
@@ -24,8 +24,9 @@ export async function createStorageBucket() {
   compression: Compression.None,
   encryption: false,
   antivirus: false
-});
-
- 
+});}
+else{
+  console.log("✅ Storage bucket already exists");
+}
   console.log("✅ Storage bucket created");
 }
