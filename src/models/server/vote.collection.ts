@@ -20,6 +20,9 @@ export default async function createVoteTable() {
     console.log("Error creating votes table ");
     console.error(error);
   }
+  finally{
+    console.log("✅ Votes table creation process completed");
+  }
   await tablesDB.createStringColumn({
     databaseId: db,
     tableId: voteTable,

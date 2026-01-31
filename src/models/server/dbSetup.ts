@@ -3,6 +3,7 @@ import createAnswerTable from "./answer.collection";
 import createQuestionTable from "./question.collection";
 import createCommentTable from "./comment.collection";
 import createVoteTable from "./vote.collection";
+import createUserTable from "./user.table";
 import {db} from "../name";
 
 export default async function createDatabase() {
@@ -27,7 +28,8 @@ export default async function createDatabase() {
       createQuestionTable(),
       createAnswerTable(),
       createCommentTable(),
-      createVoteTable()    ]);
+      createVoteTable(),
+    createUserTable()    ]);
     console.log("✅ Tables created / verified");
   } catch (error) {
     console.error("❌ createDatabase failed:", error);

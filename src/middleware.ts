@@ -5,17 +5,14 @@ import {createStorageBucket} from './models/server/storage.collection'
 import { clerkMiddleware } from '@clerk/nextjs/server';
 
 
-
-export default clerkMiddleware();
-
 // This function can be marked `async` if using `await` inside
-export async function middleware(request: NextRequest) {
+export default clerkMiddleware(async (auth, request: NextRequest)=> {
  await Promise.all([
     createDatabase(),
     createStorageBucket()
  ])
   return NextResponse.next()
-}
+})
  
 // See "Matching Paths" below to learn more
 export const config = {
