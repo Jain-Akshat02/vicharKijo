@@ -3,13 +3,14 @@ import type { NextRequest } from 'next/server'
 import createDatabase from './models/server/dbSetup'
 import {createStorageBucket} from './models/server/storage.collection'
 import { clerkMiddleware } from '@clerk/nextjs/server';
-
+import { syncClerkUser } from './models/server/syncClerck';
 
 // This function can be marked `async` if using `await` inside
 export default clerkMiddleware(async (auth, request: NextRequest)=> {
  await Promise.all([
     createDatabase(),
-    createStorageBucket()
+    createStorageBucket(),
+    syncClerkUser(auth)  // Pass auth object to syncClerkUser
  ])
   return NextResponse.next()
 })

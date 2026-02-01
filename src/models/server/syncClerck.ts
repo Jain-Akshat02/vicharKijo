@@ -7,7 +7,11 @@ import { db } from "../name";
 const DATABASE_ID = db;
 const USERS_COLLECTION_ID = "users"; // or whatever you name it
 
-export async function syncClerkUser() {
+export async function syncClerkUser(auth: any) {
+  // Use the auth object passed from middleware instead of calling auth()
+  const authData = await auth();
+  console.log("🔍 Auth Data:", authData);
+  
   const { userId }: any = auth();
   if (!userId) return;
 
