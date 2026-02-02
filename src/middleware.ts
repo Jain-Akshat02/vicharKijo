@@ -6,11 +6,15 @@ import { clerkMiddleware } from '@clerk/nextjs/server';
 import { syncClerkUser } from './models/server/syncClerck';
 
 // This function can be marked `async` if using `await` inside
-export default clerkMiddleware(async (auth, request: NextRequest)=> {
+export default clerkMiddleware(async (auth:any, request: NextRequest)=> {
+  console.log("calling middleware");
+  
+  const authData = await auth();
  await Promise.all([
     createDatabase(),
     createStorageBucket(),
-    syncClerkUser(auth)  // Pass auth object to syncClerkUser
+    console.log("calling clerck"),
+    syncClerkUser(authData.userId)
  ])
   return NextResponse.next()
 })
