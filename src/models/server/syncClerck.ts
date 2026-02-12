@@ -13,7 +13,6 @@ export async function syncClerkUser(userId?: string, user?: any) {
     console.log("❌ No userId provided, exiting");
     return;
   }
-  
   if (!user) {
     console.log("❌ No user data provided");
     return;
