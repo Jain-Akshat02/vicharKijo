@@ -2,7 +2,7 @@
 import { databases } from "@/models/server/config";
 import { ID, Query } from "appwrite";
 import { db } from "../name";
-
+   import { clerkClient } from '@clerk/nextjs/server';
 const DATABASE_ID = db;
 const USERS_COLLECTION_ID = "users"; // or whatever you name it
 
@@ -12,6 +12,21 @@ export async function syncClerkUser(userId?: string, user?: any) {
   if(!userId) {
     console.log("❌ No userId provided, exiting");
     return;
+  }
+  try {
+    const client = await clerkClient();
+
+    const user = await client.users.getUser(userId);
+
+    const primaryEmail = user.emailAddresses.find(
+      (e) => e.id === user.primaryEmailAddressId
+    )?.emailAddress;
+
+    console.log("📧 Email:", primaryEmail);
+    console.log("👤 Username:", user.username);
+    console.log("📝 Name:", user.firstName, user.lastName);
+  } catch (error) {
+    console.log("❌ Error in syncClerkUser:", error);
   }
   if (!user) {
     console.log("❌ No user data provided");

@@ -11,9 +11,6 @@ export default clerkMiddleware(async (auth:any, request: NextRequest)=> {
   
   const authData = await auth();
   let user = null;
-  if(authData.userId){
-    user = await currentUser();
-  }
  await Promise.all([
     createDatabase(),
     createStorageBucket(),

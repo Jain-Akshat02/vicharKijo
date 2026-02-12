@@ -28,13 +28,13 @@ export default async function createVoteTable() {
   
   // Create columns - wrap each in try-catch to handle "already exists" errors
   try {
-    await tablesDB.createStringColumn({
-      databaseId: db,
-      tableId: voteTable,
-      key: "userId",
-      size: 50,
-      required: true,
-    });
+  await tablesDB.createStringColumn({
+    databaseId: db,
+    tableId: voteTable,
+    key: "userId",
+    size: 50,
+    required: true,
+  });
   } catch (error: any) {
     if (error?.code === 409 || error?.message?.includes('already exists')) {
       // Column already exists, skip
@@ -44,13 +44,13 @@ export default async function createVoteTable() {
   }
   
   try {
-    await tablesDB.createEnumColumn({
-      databaseId: db,
-      tableId: voteTable,
-      key: "type",
-      elements: ["up", "down"],
-      required: true,
-    });
+  await tablesDB.createEnumColumn({
+    databaseId: db,
+    tableId: voteTable,
+    key: "type",
+    elements: ["up", "down"],
+    required: true,
+  });
   } catch (error: any) {
     if (error?.code === 409 || error?.message?.includes('already exists')) {
       // Column already exists, skip
@@ -60,13 +60,13 @@ export default async function createVoteTable() {
   }
   
   try {
-    await tablesDB.createEnumColumn({
-      databaseId: db,
-      tableId: voteTable,
-      key: "targetType",
-      elements: ["question", "answer"],
-      required: true,
-    });
+  await tablesDB.createEnumColumn({
+    databaseId: db,
+    tableId: voteTable,
+    key: "targetType",
+    elements: ["question", "answer"],
+    required: true,
+  });
   } catch (error: any) {
     if (error?.code === 409 || error?.message?.includes('already exists')) {
       // Column already exists, skip
@@ -76,13 +76,13 @@ export default async function createVoteTable() {
   }
   
   try {
-    await tablesDB.createStringColumn({
-      databaseId: db,
-      tableId: voteTable,
-      key: "targetId",
-      size: 50,
-      required: true,
-    });
+  await tablesDB.createStringColumn({
+    databaseId: db,
+    tableId: voteTable,
+    key: "targetId",
+    size: 50,
+    required: true,
+  });
   } catch (error: any) {
     if (error?.code === 409 || error?.message?.includes('already exists')) {
       // Column already exists, skip
