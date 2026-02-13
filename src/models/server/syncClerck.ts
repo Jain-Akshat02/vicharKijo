@@ -1,7 +1,7 @@
 // src/models/server/syncClerkUser.ts
-import { databases } from "@/models/server/config";
+import { databases,tablesDB } from "@/models/server/config";
 import { ID, Query } from "appwrite";
-import { db } from "../name";
+import { db,userTable } from "../name";
    import { clerkClient } from '@clerk/nextjs/server';
 const DATABASE_ID = db;
 const USERS_COLLECTION_ID = "users"; // or whatever you name it
@@ -25,6 +25,13 @@ export async function syncClerkUser(userId?: string, user?: any) {
     console.log("📧 Email:", primaryEmail);
     console.log("👤 Username:", user.username);
     console.log("📝 Name:", user.firstName, user.lastName);
+    const payload = {
+      userId: user.id,
+      email: primaryEmail,
+      role: "user",
+      createdAt: new Date().toISOString(),
+      username: user.username
+    }
   } catch (error) {
     console.log("❌ Error in syncClerkUser:", error);
   }

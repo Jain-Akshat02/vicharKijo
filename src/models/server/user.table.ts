@@ -56,6 +56,21 @@ export default async function createUserTable(){
             throw error;
         }
     }
+    try {
+        await tablesDB.createStringColumn({
+            databaseId: db,
+            tableId: userTable,
+            key:"username",
+            size:320,
+            required: true
+        })
+    } catch (error:any) {
+        if (error?.code === 409 || error?.message?.includes('already exists')) {
+            // Column already exists, skip
+        } else {
+            throw error;
+        }
+    }
     
     try {
         await tablesDB.createStringColumn({
