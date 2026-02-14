@@ -25,13 +25,51 @@ export async function syncClerkUser(userId?: string, user?: any) {
     console.log("📧 Email:", primaryEmail);
     console.log("👤 Username:", user.username);
     console.log("📝 Name:", user.firstName, user.lastName);
+    let username = user.username;
+        if (!username) {
+     const emailBase = primaryEmail?.split('@')[0];
+     // Remove spaces, special chars, keep only letters/numbers
+     const cleanBase = emailBase?.replace(/[^a-zA-Z0-9]/g, '');
+     const randomNum = Math.floor(1000 + Math.random() * 9000);
+     username = `${cleanBase}_${randomNum}`;
+   }
     const payload = {
       userId: user.id,
       email: primaryEmail,
       role: "user",
       createdAt: new Date().toISOString(),
-      username: user.username
+      username: username
     }
+    // Check if user already exists
+try {
+  const existingUsers = await tablesDB.listRows({
+    databaseId: db,
+    tableId: userTable,
+    queries: [
+    Query.equal("userId", user.id) 
+  ]
+  });
+  
+  if (existingUsers.rows && existingUsers.rows.length > 0) {
+    console.log("✅ User already exists in Appwrite, skipping");
+    return; // User already synced
+  }
+  // Create user in Appwrite
+try {
+  await tablesDB.createRow({
+    databaseId: db,
+    tableId: userTable,
+    rowId: ID.unique(),     
+    data: payload    
+  });
+  console.log("✅ User saved to Appwrite!");
+} catch (error) {
+  console.error("❌ Error saving user to Appwrite:", error);
+}
+} catch (error) {
+  console.log("⚠️ Error checking existing user:", error);
+  // Continue anyway - might be first time
+}
   } catch (error) {
     console.log("❌ Error in syncClerkUser:", error);
   }
