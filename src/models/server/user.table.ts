@@ -72,6 +72,7 @@ export default async function createUserTable(){
         }
     }
     
+    
     try {
         await tablesDB.createStringColumn({
             databaseId: db,
