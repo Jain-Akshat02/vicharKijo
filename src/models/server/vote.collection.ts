@@ -1,5 +1,5 @@
 import { tablesDB } from "./config";
-import { IndexType, Permission, Role } from "node-appwrite";
+import { Permission, Role } from "node-appwrite";
 import { db, voteTable } from "../name";
 
 export default async function createVoteTable() {
