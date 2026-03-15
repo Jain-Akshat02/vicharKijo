@@ -11,7 +11,7 @@ export default function Home() {
 
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               Ask questions. Share answers.{" "}
-              <span className="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-indigo-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
                 Level up your thinking.
               </span>
             </h1>
@@ -172,7 +172,7 @@ export default function Home() {
           </section>
 
           {/* Getting started / CTA */}
-          <section className="rounded-2xl border border-dashed border-zinc-300 bg-gradient-to-br from-indigo-50 via-sky-50 to-emerald-50 p-4 text-xs text-zinc-700 dark:border-zinc-700 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900 dark:text-zinc-200">
+          <section className="rounded-2xl border border-dashed border-zinc-300 bg-linear-to-br from-indigo-50 via-sky-50 to-emerald-50 p-4 text-xs text-zinc-700 dark:border-zinc-700 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900 dark:text-zinc-200">
             <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
               What you can wire up next
             </h2>
