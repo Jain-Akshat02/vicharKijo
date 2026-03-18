@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { FiMenu, FiX } from "react-icons/fi"
+import { useRouter } from "next/navigation"
+import { FiMenu } from "react-icons/fi"
 import {
   Sheet,
   SheetContent,
@@ -20,6 +21,12 @@ import { Button } from "@/components/ui/button"
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  const navigateTo = (path: string) => {
+    setOpen(false)
+    router.push(path)
+  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -48,19 +55,19 @@ export function MobileNav() {
 
         <nav className="mt-8 flex flex-col gap-1">
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => navigateTo("/questions")}
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
           >
             <span>Questions</span>
           </button>
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => navigateTo("/tags")}
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
           >
             <span>Tags</span>
           </button>
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => navigateTo("/users")}
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
           >
             <span>Users</span>
@@ -101,4 +108,3 @@ export function MobileNav() {
     </Sheet>
   )
 }
-

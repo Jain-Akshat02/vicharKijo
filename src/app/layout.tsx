@@ -10,6 +10,7 @@ import {
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { MobileNav } from '@/components/mobile-nav'
+import NavButtons from '@/components/NavButton'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -58,15 +59,7 @@ export default function RootLayout({
 
               {/* Desktop navigation - hidden on mobile */}
               <nav className="hidden items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300 sm:flex">
-                <button className="transition hover:text-zinc-900 dark:hover:text-white">
-                  Questions
-                </button>
-                <button className="transition hover:text-zinc-900 dark:hover:text-white">
-                  Tags
-                </button>
-                <button className="transition hover:text-zinc-900 dark:hover:text-white">
-                  Users
-                </button>
+                <NavButtons />
               </nav>
 
               {/* Auth buttons - responsive */}
